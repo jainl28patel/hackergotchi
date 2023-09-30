@@ -1,0 +1,21 @@
+The output you provided represents two TCP connections in different states. Let's break down what each line means:
+
+1. `tcp4 0 0 localhost.6000 localhost.50235 FIN_WAIT_2`
+   - This line represents a TCP connection in the FIN_WAIT_2 state.
+   - The connection is between the local system (localhost) on port 6000 and a remote system (localhost) on port 50235.
+   - The FIN_WAIT_2 state occurs after the local endpoint (port 6000) has sent a TCP connection termination (FIN) signal to the remote endpoint (port 50235).
+   - In this state, the local endpoint is waiting for an acknowledgment (ACK) from the remote endpoint to confirm the termination of the connection.
+   - Once the ACK is received, the connection will transition to the TIME_WAIT state before fully closing.
+
+2. `tcp4 0 0 localhost.50235 localhost.6000 CLOSE_WAIT`
+   - This line represents a TCP connection in the CLOSE_WAIT state.
+   - The connection is between the local system (localhost) on port 50235 and a remote system (localhost) on port 6000.
+   - The CLOSE_WAIT state occurs when the local endpoint has received a TCP connection termination (FIN) signal from the remote endpoint (port 6000).
+   - In this state, the local endpoint has not yet sent its own FIN signal to close the connection but is waiting for further data from the remote endpoint.
+   - The CLOSE_WAIT state typically indicates that the local application has data to read from the remote endpoint but has not yet initiated the connection termination.
+
+In summary, the output shows two TCP connections in different states:
+
+- One connection (port 6000 to port 50235) is in the FIN_WAIT_2 state, indicating that it is waiting for an acknowledgment from the remote endpoint to complete the termination process.
+
+- The other connection (port 50235 to port 6000) is in the CLOSE_WAIT state, indicating that the local endpoint has received a termination signal from the remote endpoint but is still waiting for further data before initiating its own connection termination.
